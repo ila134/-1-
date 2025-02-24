@@ -27,3 +27,20 @@ class RegistrationRem:
 
         self.submit_button = ttk.Button(self.window, text="Подтвердить", command=self.submit)
         self.submit_button.pack(pady=20)
+
+    def submit(self):
+        name = self.entry_name.get()
+        phone = self.entry_phone.get()
+        comment = self.entry_comment.get("1.0", END).strip()
+
+
+        additional_expenses = 0
+        total_price = self.base_price + additional_expenses
+
+        print(f"Имя: {name}, Телефон: {phone}, Комментарий: {comment}")
+        CheckRegistration(name, phone, comment, total_price)  # Передаем общую цену
+        self.open_check_window(name, phone, comment, total_price)
+        self.window.destroy()
+
+    def open_check_window(self, name, phone, comment, price):
+        CheckWindow(name, phone, comment, price)
